@@ -11,6 +11,10 @@
 
     <modules>
         <module>eureka-service</module>
+        <module>api-admin</module>
+        <module>api-user</module>
+        <module>api-gateway</module>
+
     </modules>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

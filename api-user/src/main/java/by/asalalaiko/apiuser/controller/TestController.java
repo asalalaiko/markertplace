@@ -1,15 +1,16 @@
-package by.asalalaiko.apiadmin.controller;
+package by.asalalaiko.apiuser.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/user")
 public class TestController {
+
 
     @GetMapping("/test")
     public String test(){
-        return "Test admin API";
+        return "Test user API";
     }
 }
