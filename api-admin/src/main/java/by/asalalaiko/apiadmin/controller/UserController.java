@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,15 @@ public class UserController {
         final boolean deleted = userService.deleteUser(id);
 
         return deleted
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+    @GetMapping(value = "/user/{id}/balance/{sum}")
+    public ResponseEntity<User> read(@PathVariable(name = "id") int id, @PathVariable(name = "sum") double sum) {
+        BigDecimal sunBD  = new BigDecimal(sum);
+        final boolean replenish = userService.replenishUserBalance(id, sunBD);
+
+        return replenish
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }

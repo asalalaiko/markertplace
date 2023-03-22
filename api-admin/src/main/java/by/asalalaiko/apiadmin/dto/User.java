@@ -32,4 +32,6 @@ public class User {
     private BigDecimal balance;
     @Column(name = "locked", columnDefinition = "boolean default false")
     private Boolean locked;
+    @Column(name = "deleted", columnDefinition = "boolean default false")
+    private Boolean deleted;
 }

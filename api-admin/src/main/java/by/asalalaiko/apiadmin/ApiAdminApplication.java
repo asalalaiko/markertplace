@@ -16,17 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApiAdminApplication {
 
 
-    @Autowired
-    private static UserService userService;
-
     public static void main(String[] args) {
         SpringApplication.run(ApiAdminApplication.class, args);
 
-        User user = new User();
-        user.setUsername("Test");
-        user.setPassword("test");
-        user.setEmail("e@m.ru");
-        Boolean t = userService.addUser(user);
     }
 
     @Bean

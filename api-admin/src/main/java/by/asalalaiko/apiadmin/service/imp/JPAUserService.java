@@ -19,19 +19,19 @@ public class JPAUserService implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    //get User by ID
     @Override
     public User getUser(Integer id) {
         Optional<User> userResponse =  userRepository.findById(id);
         User user = userResponse.get();
         return user;
     }
-
+    //get User by Name
     @Override
     public User getUserByName(String name) {
         return userRepository.findByUsername(name);
     }
-
+    //add new User
     @Override
     public boolean addUser(User user) {
         User userFromDb = userRepository.findByUsername(user.getUsername());
@@ -47,17 +47,28 @@ public class JPAUserService implements UserService {
         saveUser(user);
         return true;
     }
-
+    //Save user
     @Override
     public void saveUser(User user) {
         userRepository.save(user);
 
     }
-
+    // delete User - check parameter deleted to TRUE
     @Override
     public boolean deleteUser(Integer id) {
-        Optional<User> userResponse =  userRepository.findById(id);
-        User user = userResponse.get();
+        User user = getUser(id);
+
+        if (user != null) {
+            user.setDeleted(true);
+            saveUser(user);
+            return true;
+        }
+        return false;
+    }
+    // locked User - check parameter locked to TRUE
+    @Override
+    public boolean lockedUser(Integer id) {
+        User user = getUser(id);
 
         if (user != null) {
             user.setLocked(true);
@@ -67,6 +78,20 @@ public class JPAUserService implements UserService {
         return false;
     }
 
+    @Override
+    public boolean replenishUserBalance(Integer id, BigDecimal sum) {
+        User user = getUser(id);
+        BigDecimal balanse = user.getBalance();
+        user.setBalance(balanse.add(sum));
+        if (user != null) {
+            saveUser(user);
+            return true;
+        }
+        return false;
+
+    }
+
+    //find all Users
     @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();
