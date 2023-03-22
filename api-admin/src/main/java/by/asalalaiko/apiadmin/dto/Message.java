@@ -20,8 +20,8 @@ import java.util.Date;
 public class Message {
     @Id
     @Column(name = "id")
-    @SequenceGenerator(name = "clientsIdSeq", sequenceName = "clients_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clientsIdSeq")
+    @SequenceGenerator(name = "messagesIdSeq", sequenceName = "messages_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "messagesIdSeq")
     private Integer id;
     @Column(name = "title")
     @NotNull

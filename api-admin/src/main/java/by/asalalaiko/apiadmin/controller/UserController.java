@@ -39,7 +39,7 @@ public class UserController {
         final boolean create = userService.addUser(user);
         return create
                 ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.CREATED);
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @DeleteMapping(value = "/user/{id}")
