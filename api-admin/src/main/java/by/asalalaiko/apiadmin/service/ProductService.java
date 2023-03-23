@@ -13,4 +13,6 @@ public interface ProductService {
     boolean saveProduct(Product product);
 
     List<Product> findAllProducts();
+
+    boolean addDiscountToProduct(Integer pId, Integer dId);
 }
