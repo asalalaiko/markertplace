@@ -48,4 +48,6 @@ public class Product {
             joinColumns = { @JoinColumn(name = "product_id") },
             inverseJoinColumns = { @JoinColumn(name = "discount_id") })
     private Set<Discount> discounts = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
+    private List<Shopping> shoppingList;
 }

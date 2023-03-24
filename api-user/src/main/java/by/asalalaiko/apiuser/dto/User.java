@@ -33,12 +33,15 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "balance")
     private BigDecimal balance;
-    @Column(name = "locked", columnDefinition = "boolean default false")
+    @Column(name = "locked", nullable = false)
     private Boolean locked;
-    @Column(name = "deleted", columnDefinition = "boolean default false")
+    @Column(name = "deleted", nullable = false)
     private Boolean deleted;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Message> messages;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Shopping> shoppingList;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

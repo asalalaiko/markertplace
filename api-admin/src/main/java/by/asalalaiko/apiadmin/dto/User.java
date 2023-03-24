@@ -5,10 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -31,11 +32,13 @@ public class User {
     private String password;
     @Column(name = "balance")
     private BigDecimal balance;
-    @Column(name = "locked", columnDefinition = "boolean default false")
+    @Column(name = "locked", nullable = false)
     private Boolean locked;
-    @Column(name = "deleted", columnDefinition = "boolean default false")
+    @Column(name = "deleted", nullable = false)
     private Boolean deleted;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Message> messages;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Shopping> shoppingList;
 
 }

@@ -59,7 +59,7 @@ public class JPAProductService implements ProductService {
         Discount discount = discountResponse.get();
         Set<Discount> discountsProduct = product.getDiscounts();
 
-        if (product != null && discount != null) {
+        if (product != null || discount != null) {
             return false;
         }
         discountsProduct.add(discount);
