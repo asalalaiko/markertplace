@@ -23,7 +23,6 @@ public class ProductController {
     @GetMapping(value = "/product/{p_id}/discount/{d_id}")
     public ResponseEntity<Product> addDiscount(@PathVariable(name = "p_id") int pID, @PathVariable(name = "d_id") int dID) {
         final boolean update = productService.addDiscountToProduct(pID, dID);
-
         return update
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);

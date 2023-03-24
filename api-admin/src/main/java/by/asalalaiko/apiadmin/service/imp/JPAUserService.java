@@ -42,6 +42,7 @@ public class JPAUserService implements UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setBalance(BigDecimal.ZERO);
+        user.setDeleted(false);
         user.setLocked(false); // new User don't blocked
 
         saveUser(user);

@@ -23,12 +23,12 @@ public class ApiAdminApplication {
 
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder()
-    {
-        return new BCryptPasswordEncoder();
-    }
 
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+
+        return new BCryptPasswordEncoder(8);
+    }
 
 
 }
