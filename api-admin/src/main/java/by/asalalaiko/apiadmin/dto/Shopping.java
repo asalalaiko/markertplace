@@ -16,6 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class Shopping {
 
+    @Id
+    @Temporal(TemporalType.DATE)
     @CreatedDate
     @Column(name = "date")
     @NotNull
