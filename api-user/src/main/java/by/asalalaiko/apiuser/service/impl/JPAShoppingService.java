@@ -35,7 +35,7 @@ public class JPAShoppingService implements ShoppingService {
         }
 
         Organization organization = product.getOrganization();
-        User seller = organization.setUser();
+        User seller = organization.getUser();
 
         Shopping shopping = new Shopping();
         shopping.setProduct(product);

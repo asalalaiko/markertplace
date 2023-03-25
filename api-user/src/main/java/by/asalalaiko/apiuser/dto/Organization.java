@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "organizations")
@@ -22,4 +23,17 @@ public class Organization {
     @Column(name = "name",  unique = true)
     @NotNull
     private String name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "logo")
+    private String logo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "organization", fetch = FetchType.LAZY)
+    private List<Product> productList;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @Column(name = "locked", nullable = false)
+    private Boolean locked;
+    @Column(name = "deleted", nullable = false)
+    private Boolean deleted;
 }

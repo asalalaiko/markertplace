@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -41,6 +42,8 @@ public class User implements UserDetails {
     private List<Message> messages;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Shopping> shoppingList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Organization> organizationList;
 
 
     @Override
