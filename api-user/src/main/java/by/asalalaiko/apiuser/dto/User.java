@@ -1,5 +1,6 @@
 package by.asalalaiko.apiuser.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,11 +39,14 @@ public class User implements UserDetails {
     private Boolean locked;
     @Column(name = "deleted", nullable = false)
     private Boolean deleted;
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Message> messages;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Shopping> shoppingList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<Organization> organizationList;
 
 

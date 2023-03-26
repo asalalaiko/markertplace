@@ -1,5 +1,6 @@
 package by.asalalaiko.apiuser.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class Message {
     private Date date;
     @Column(name = "text_message")
     private String text;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

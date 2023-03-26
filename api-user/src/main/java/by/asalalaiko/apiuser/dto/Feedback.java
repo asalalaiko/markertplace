@@ -1,5 +1,6 @@
 package by.asalalaiko.apiuser.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Feedback {
 
+
     @Id
     @Column(name = "id")
     @SequenceGenerator(name = "feedbackIdSeq", sequenceName = "feedback_id_seq", allocationSize = 1)
@@ -22,6 +24,7 @@ public class Feedback {
     @Column(name = "name",  unique = true)
     @NotNull
     private String name;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

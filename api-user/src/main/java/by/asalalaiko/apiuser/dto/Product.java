@@ -1,5 +1,7 @@
 package by.asalalaiko.apiuser.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +29,7 @@ public class Product {
     private String name;
     @Column(name = "description")
     private String description;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "organization_id")
     private Organization organization;
@@ -35,6 +38,7 @@ public class Product {
     private BigDecimal cost;
     @Column(name = "quantity", columnDefinition = "integer default 0")
     private Integer quantity;
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
     private List<Feedback> feedback;
     @Column(name = "tags")
@@ -43,6 +47,7 @@ public class Product {
     private String specifications;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
     private List<Rating> rating;
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "discounts_products",
             joinColumns = { @JoinColumn(name = "product_id") },

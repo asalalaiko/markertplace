@@ -1,5 +1,7 @@
 package by.asalalaiko.apiadmin.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,8 +30,10 @@ public class Organization {
     private String description;
     @Column(name = "logo")
     private String logo;
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organization", fetch = FetchType.LAZY)
     private List<Product> productList;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

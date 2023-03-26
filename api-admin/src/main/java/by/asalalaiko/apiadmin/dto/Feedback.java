@@ -1,5 +1,6 @@
 package by.asalalaiko.apiadmin.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Feedback {
     @Column(name = "name",  unique = true)
     @NotNull
     private String name;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
