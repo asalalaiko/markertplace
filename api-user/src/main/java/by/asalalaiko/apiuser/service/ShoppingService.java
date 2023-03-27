@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ShoppingService {
 
-    boolean addProductToShopping(Product product, User user) ;
+    boolean buyProduct(Product product, User user) ;
 
     List<Shopping> findByUser();
 }

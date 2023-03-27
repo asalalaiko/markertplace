@@ -29,7 +29,7 @@ public class JPAShoppingService implements ShoppingService {
 
     @Override
     @Transactional
-    public boolean addProductToShopping(Product product, User user) {
+    public boolean buyProduct(Product product, User user) {
         if (product.getId() != null || user.getId() != null) {
             return false;
         }
