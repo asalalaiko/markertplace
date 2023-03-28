@@ -11,5 +11,8 @@ public interface UserService {
 
     User getUserByName(String name);
     Set<Product> getProductList(User user);
+    boolean addUser(User user) ;
+
+    public void saveUser(User user);
 
 }

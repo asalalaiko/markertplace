@@ -20,6 +20,8 @@ public class JPAUserService implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     //get User by Name
     @Override
@@ -31,6 +33,29 @@ public class JPAUserService implements UserService {
     public Set<Product> getProductList(User user) {
         List<Shopping> shoppingList = user.getShoppingList();
         return shoppingList.stream().map(product -> product.getProduct()).collect(Collectors.toSet());
+
+    }
+    //add new User
+    @Override
+    public boolean addUser(User user) {
+        User userFromDb = userRepository.findByUsername(user.getUsername());
+
+        if (userFromDb != null) {
+            return false;
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setBalance(BigDecimal.ZERO);
+        user.setDeleted(false);
+        user.setLocked(false); // new User don't blocked
+
+        saveUser(user);
+        return true;
+    }
+    //Save user
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
 
     }
 }
