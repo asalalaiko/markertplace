@@ -36,7 +36,7 @@ public class Organization {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @Column(name = "locked", nullable = false)
+    @Column(name = "locked", nullable = true)
     private Boolean locked;
     @Column(name = "deleted", nullable = false)
     private Boolean deleted;
