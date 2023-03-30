@@ -1,5 +1,6 @@
 package by.asalalaiko.apiuser;
 
+import by.asalalaiko.apiuser.dto.Message;
 import by.asalalaiko.apiuser.dto.User;
 import by.asalalaiko.apiuser.repository.UserRepository;
 import by.asalalaiko.apiuser.service.MessageService;
@@ -7,6 +8,8 @@ import by.asalalaiko.apiuser.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,8 +42,9 @@ class ApiUserApplicationTests {
             dataFactory.createMessage(user, i);
             dataFactory.createMessage(user1, i);
         }
-        messageService.getMessagesByUser(user).stream().forEach(m -> System.out.println(m));
-        messageService.getMessagesByUser(user1).stream().forEach(m -> System.out.println(m));
+        List<Message> msgList = messageService.getMessagesByUser(user);
+        msgList.stream().forEach(message -> System.out.println(message.getText()));
+       // messageService.getMessagesByUser(user1).stream().forEach(m -> System.out.println(m.toString()));
 
         assertEquals(messageService.getMessagesByUser(user).size(), 100);
     }
