@@ -6,5 +6,5 @@ public interface OrganizationService {
 
     boolean createOrganization(Organization organization) ;
 
-    public void saveOrganization(Organization Organization);
+    public void saveOrganization(Organization organization);
 }

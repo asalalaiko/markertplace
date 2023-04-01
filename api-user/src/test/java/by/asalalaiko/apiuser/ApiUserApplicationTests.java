@@ -42,10 +42,6 @@ class ApiUserApplicationTests {
             dataFactory.createMessage(user, i);
             dataFactory.createMessage(user1, i);
         }
-        List<Message> msgList = messageService.getMessagesByUser(user);
-        msgList.stream().forEach(message -> System.out.println(message.getText()));
-       // messageService.getMessagesByUser(user1).stream().forEach(m -> System.out.println(m.toString()));
-
         assertEquals(messageService.getMessagesByUser(user).size(), 100);
     }
 
