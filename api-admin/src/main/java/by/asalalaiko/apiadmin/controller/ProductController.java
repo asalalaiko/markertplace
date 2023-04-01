@@ -27,4 +27,14 @@ public class ProductController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+
+    @GetMapping(value = "/product/{id}/activate")
+    public ResponseEntity<?> buyProduct(@PathVariable(name = "id") int id) {
+        Product product = productService.getProduct(id);
+        final boolean activate = productService.activateProduct(product);
+        return activate
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }

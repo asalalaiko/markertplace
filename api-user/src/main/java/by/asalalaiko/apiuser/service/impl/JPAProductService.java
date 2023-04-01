@@ -30,6 +30,8 @@ public class JPAProductService implements ProductService {
         if (orgDB == null || !user.getOrganizationList().contains(orgDB)) {
             return false;
         }
+        product.setLocked(true);
+        product.setDeleted(false);
         saveProduct(product);
         return true;
     }

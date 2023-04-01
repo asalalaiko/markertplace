@@ -55,4 +55,8 @@ public class Product {
     private Set<Discount> discounts = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
     private List<Shopping> shoppingList;
+    @Column(name = "locked", nullable = false)
+    private Boolean locked;
+    @Column(name = "deleted", nullable = false)
+    private Boolean deleted;
 }

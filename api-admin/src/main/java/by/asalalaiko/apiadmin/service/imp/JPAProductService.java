@@ -52,6 +52,18 @@ public class JPAProductService implements ProductService {
     }
 
     @Override
+    public boolean activateProduct(Product product) {
+        Optional<Product> productDB = productRepository.findById(product.getId());
+
+        if (productDB != null) {
+            return false;
+        }
+        product.setLocked(false);
+        saveProduct(product);
+        return true;
+    }
+
+    @Override
     public boolean addDiscountToProduct(Integer pId, Integer dId) {
         Optional<Product> productResponse =  productRepository.findById(pId);
         Product product = productResponse.get();

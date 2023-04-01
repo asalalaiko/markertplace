@@ -14,5 +14,7 @@ public interface ProductService {
 
     List<Product> findAllProducts();
 
+    boolean activateProduct(Product product) ;
+
     boolean addDiscountToProduct(Integer pId, Integer dId);
 }
