@@ -15,6 +15,13 @@ public class JPAOrganizationService implements OrganizationService {
     private OrganizationRepository organizationRepository;
 
     @Override
+    public Organization getOrganization(Integer id) {
+        Optional<Organization> orgResponse =  organizationRepository.findById(id);
+        Organization organization = orgResponse.get();
+        return organization;
+    }
+
+    @Override
     public boolean activateOrganization(Organization organization) {
         Optional<Organization> orgDB = organizationRepository.findById(organization.getId());
 
