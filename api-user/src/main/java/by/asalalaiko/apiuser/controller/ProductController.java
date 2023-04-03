@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -21,6 +24,15 @@ public class ProductController {
     @Autowired
     private UserService userService;
 
+
+    @GetMapping(value = "/products")
+    public ResponseEntity<List<Product>> getAllProduct() {
+        final List<Product> products = productService.findAll();
+
+        return products != null &&  ! products.isEmpty()
+                ? new ResponseEntity<>(products, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
     @PostMapping(value = "/product")
     public ResponseEntity<?> buyProduct(@RequestBody Product product, Authentication authentication) {

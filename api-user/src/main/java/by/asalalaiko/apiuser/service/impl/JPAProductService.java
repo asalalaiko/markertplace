@@ -11,6 +11,8 @@ import by.asalalaiko.apiuser.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class JPAProductService implements ProductService {
 
@@ -34,6 +36,11 @@ public class JPAProductService implements ProductService {
         product.setDeleted(false);
         saveProduct(product);
         return true;
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 
     @Override
