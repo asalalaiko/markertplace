@@ -34,6 +34,30 @@ public class JPAOrganizationService implements OrganizationService {
     }
 
     @Override
+    public boolean deactivateOrganization(Organization organization) {
+        Optional<Organization> orgDB = organizationRepository.findById(organization.getId());
+
+        if (orgDB != null) {
+            return false;
+        }
+        organization.setLocked(true);
+        saveOrganization(organization);
+        return true;
+    }
+
+    @Override
+    public boolean deleteOrganization(Organization organization) {
+        Optional<Organization> orgDB = organizationRepository.findById(organization.getId());
+
+        if (orgDB != null) {
+            return false;
+        }
+        organization.setDeleted(true);
+        saveOrganization(organization);
+        return true;
+    }
+
+    @Override
     public void saveOrganization(Organization organization) {
         organizationRepository.save(organization);
     }

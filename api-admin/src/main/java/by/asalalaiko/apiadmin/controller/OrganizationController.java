@@ -13,11 +13,28 @@ public class OrganizationController {
     private OrganizationService organizationService;
 
     @GetMapping(value = "/org/{id}/activate")
-    public ResponseEntity<?> buyProduct(@PathVariable(name = "id") int id) {
+    public ResponseEntity<?> activateOrg(@PathVariable(name = "id") int id) {
         Organization organization = organizationService.getOrganization(id);
         final boolean activate = organizationService.activateOrganization(organization);
         return activate
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @GetMapping(value = "/org/{id}/deactivate")
+    public ResponseEntity<?> deactivateOrg(@PathVariable(name = "id") int id) {
+        Organization organization = organizationService.getOrganization(id);
+        final boolean deactivate = organizationService.deactivateOrganization(organization);
+        return deactivate
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @DeleteMapping(value = "/org/{id}")
+    public ResponseEntity<?> deleteOrg(@PathVariable(name = "id") int id) {
+        Organization organization = organizationService.getOrganization(id);
+        final boolean deleted = organizationService.deleteOrganization(organization);
+        return deleted
+            ? new ResponseEntity<>(HttpStatus.OK)
+            : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);}
 }

@@ -8,5 +8,9 @@ public interface OrganizationService {
 
     boolean activateOrganization(Organization organization) ;
 
+    boolean deactivateOrganization(Organization organization) ;
+
+    boolean deleteOrganization(Organization organization) ;
+
     public void saveOrganization(Organization Organization);
 }
